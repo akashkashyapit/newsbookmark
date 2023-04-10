@@ -5,14 +5,16 @@ import axios from 'axios';
 import Cards from '@/component/card';
 import Head from 'next/head';
 import { Box, Grid } from '@mui/material';
+import {newsData} from "../static"
 
 export default function Home() {
   const [data, setData] = useState([]);
   const dispatch = useDispatch()
   useEffect(()=>{
+    setData(newsData.articles)
     axios.get('https://newsapi.org/v2/everything?q=bitcoin&apiKey=e78cdcdb027449f081377c433619e7a6')
       .then(function (response) {
-        setData(response.data.articles)
+        setData(newsData.articles)
       })
       .catch(function (error) {
         console.log(error);
